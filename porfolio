@@ -1,0 +1,254 @@
+import React, { useState } from 'react';
+import { Github, Linkedin, Mail, ExternalLink, Code, Briefcase, User, Menu, X } from 'lucide-react';
+
+export default function Portfolio() {
+  const [activeSection, setActiveSection] = useState('about');
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const projects = [
+    {
+      title: "Kubernetes CI/CD Pipeline",
+      description: "Automated deployment pipeline using Jenkins, ArgoCD, and Kubernetes for microservices architecture with 99.9% uptime.",
+      tech: ["Kubernetes", "Jenkins", "ArgoCD", "Helm"],
+      link: "#"
+    },
+    {
+      title: "Infrastructure as Code",
+      description: "Terraform modules for multi-cloud infrastructure provisioning across AWS, Azure, and GCP with automated testing.",
+      tech: ["Terraform", "AWS", "Azure", "Python"],
+      link: "#"
+    },
+    {
+      title: "Monitoring & Observability",
+      description: "Comprehensive monitoring solution using Prometheus, Grafana, and ELK stack for distributed systems.",
+      tech: ["Prometheus", "Grafana", "ELK", "Alertmanager"],
+      link: "#"
+    },
+    {
+      title: "Container Security Pipeline",
+      description: "Automated security scanning and compliance checking for Docker containers integrated into CI/CD workflows.",
+      tech: ["Docker", "Trivy", "SonarQube", "GitLab CI"],
+      link: "#"
+    },
+    {
+      title: "Multi-Cloud DR Solution",
+      description: "Disaster recovery automation with backup strategies, failover mechanisms, and regular testing procedures.",
+      tech: ["Ansible", "Bash", "CloudFormation", "Velero"],
+      link: "#"
+    },
+    {
+      title: "GitOps Workflow",
+      description: "Implemented GitOps practices for declarative infrastructure and application deployment with automated rollbacks.",
+      tech: ["FluxCD", "Git", "Kustomize", "Kubernetes"],
+      link: "#"
+    }
+  ];
+
+  const skills = [
+    "Kubernetes", "Docker", "AWS", "Azure", "GCP", "Terraform",
+    "Jenkins", "GitLab CI", "GitHub Actions", "ArgoCD", "Ansible",
+    "Python", "Bash", "Go", "Prometheus", "Grafana", "ELK Stack",
+    "Linux", "Nginx", "PostgreSQL", "Redis", "Helm", "Git"
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-sm z-50 border-b border-purple-500/20">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Portfolio
+          </h1>
+          
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex gap-6">
+            {['about', 'projects', 'skills', 'contact'].map(section => (
+              <button
+                key={section}
+                onClick={() => setActiveSection(section)}
+                className={`capitalize transition-colors ${
+                  activeSection === section 
+                    ? 'text-purple-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                {section}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-slate-800 border-t border-purple-500/20">
+            {['about', 'projects', 'skills', 'contact'].map(section => (
+              <button
+                key={section}
+                onClick={() => {
+                  setActiveSection(section);
+                  setMenuOpen(false);
+                }}
+                className={`block w-full text-left px-4 py-3 capitalize ${
+                  activeSection === section ? 'bg-purple-900/50 text-purple-400' : 'text-gray-300'
+                }`}
+              >
+                {section}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      {/* Main Content */}
+      <div className="pt-20 px-4 pb-12">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* About Section */}
+          {activeSection === 'about' && (
+            <div className="mt-12 animate-fade-in">
+              <div className="flex items-center gap-3 mb-6">
+                <User className="text-purple-400" size={32} />
+                <h2 className="text-4xl font-bold">About Me</h2>
+              </div>
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-8 border border-purple-500/20">
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-6xl">
+                    ⚙️
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-semibold mb-4">DevOps Engineer</h3>
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                      Passionate about automation, scalability, and reliability. With 5+ years of experience
+                      in DevOps and cloud infrastructure, I specialize in building robust CI/CD pipelines,
+                      container orchestration, and infrastructure as code solutions that drive business efficiency.
+                    </p>
+                    <p className="text-gray-300 leading-relaxed">
+                      I thrive on optimizing deployment processes, implementing monitoring solutions, and ensuring
+                      high availability across distributed systems. When I'm not automating infrastructure, you can
+                      find me contributing to open-source DevOps tools or sharing knowledge with the community.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Projects Section */}
+          {activeSection === 'projects' && (
+            <div className="mt-12 animate-fade-in">
+              <div className="flex items-center gap-3 mb-6">
+                <Code className="text-purple-400" size={32} />
+                <h2 className="text-4xl font-bold">Projects</h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project, idx) => (
+                  <div 
+                    key={idx}
+                    className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-6 border border-purple-500/20 hover:border-purple-500/50 transition-all hover:transform hover:scale-105"
+                  >
+                    <h3 className="text-xl font-semibold mb-3 text-purple-400">{project.title}</h3>
+                    <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, i) => (
+                        <span 
+                          key={i}
+                          className="px-3 py-1 bg-purple-900/50 rounded-full text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <a 
+                      href={project.link}
+                      className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      View Project <ExternalLink size={16} />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Skills Section */}
+          {activeSection === 'skills' && (
+            <div className="mt-12 animate-fade-in">
+              <div className="flex items-center gap-3 mb-6">
+                <Briefcase className="text-purple-400" size={32} />
+                <h2 className="text-4xl font-bold">Skills</h2>
+              </div>
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-8 border border-purple-500/20">
+                <div className="flex flex-wrap gap-3">
+                  {skills.map((skill, idx) => (
+                    <div 
+                      key={idx}
+                      className="px-6 py-3 bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-lg border border-purple-500/30 hover:border-purple-400 transition-all hover:transform hover:scale-110"
+                    >
+                      {skill}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Contact Section */}
+          {activeSection === 'contact' && (
+            <div className="mt-12 animate-fade-in">
+              <div className="flex items-center gap-3 mb-6">
+                <Mail className="text-purple-400" size={32} />
+                <h2 className="text-4xl font-bold">Get In Touch</h2>
+              </div>
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-8 border border-purple-500/20">
+                <p className="text-gray-300 mb-8 text-lg">
+                  I'm always open to new opportunities and collaborations. Feel free to reach out!
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a 
+                    href="mailto:hello@example.com"
+                    className="flex items-center gap-3 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                  >
+                    <Mail size={20} />
+                    Email Me
+                  </a>
+                  <a 
+                    href="#"
+                    className="flex items-center gap-3 px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+                  >
+                    <Github size={20} />
+                    GitHub
+                  </a>
+                  <a 
+                    href="#"
+                    className="flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                  >
+                    <Linkedin size={20} />
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-out;
+        }
+      `}</style>
+    </div>
+  );
+}
