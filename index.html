@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        main {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Demo Page</h1>
+    </header>
+    
+    <main>
+        <h2>About This Page</h2>
+        <p>This is a basic HTML demo page with some simple styling and interactivity.</p>
+        
+        <h3>Features:</h3>
+        <ul>
+            <li>Responsive design</li>
+            <li>Clean layout</li>
+            <li>Interactive button</li>
+        </ul>
+        
+        <button onclick="showMessage()">Click Me!</button>
+        <p id="message"></p>
+    </main>
+    
+    <script>
+        function showMessage() {
+            document.getElementById('message').textContent = 'Hello! You clicked the button!';
+        }
+    </script>
+</body>
+</html>
