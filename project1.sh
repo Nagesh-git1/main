@@ -21,7 +21,7 @@ git clone https://github.com/Nagesh-git1/main.git
 sudo cp -r  /home/ubuntu/main/porfolio /var/www/html/index.html
 
 
-sudo systemctl restart apache2
+sudo systemctl restart apache2 apache
 
 
 
