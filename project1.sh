@@ -21,7 +21,11 @@ git clone https://github.com/Nagesh-git1/main.git
 sudo cp -r  /home/ubuntu/main/porfolio /var/www/html/index.html
 
 
+<<<<<<< HEAD
 sudo systemctl restart apache2 apache nagesh
+=======
+sudo systemctl restart apache2
+>>>>>>> parent of 6ff4b04 (Merge pull request #1 from Nagesh-git1/master)
 
 
 
